@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login to your FitPro account and continue your fitness journey">
+    <title>Login - FitPro Fitness Management</title>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ================================
+         NAVIGATION BAR
+         ================================ -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">FitPro</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="membership.html">Membership</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ================================
+         LOGIN SECTION
+         ================================ -->
+    <section class="login-section">
+        <div class="login-container">
+            <!-- Left Side - Login Form -->
+            <div class="login-form-wrapper">
+                <div class="login-header">
+                    <h1>Welcome Back</h1>
+                    <p>Login to continue your fitness journey</p>
+                </div>
+
+                <form class="login-form" action="#" method="post">
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="your.email@example.com" 
+                            required
+                        >
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Enter your password" 
+                            required
+                        >
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+
+                    <!-- Login Button -->
+                    <button type="submit" class="btn btn-primary btn-full">
+                        Login to Account
+                    </button>
+
+                    <!-- Divider -->
+                    <div class="divider">
+                        <span>or continue with</span>
+                    </div>
+
+                    <!-- Social Login Options -->
+                    <div class="social-login">
+                        <button type="button" class="social-btn">
+                            <span class="social-icon">G</span>
+                            Google
+                        </button>
+                        <button type="button" class="social-btn">
+                            <span class="social-icon">f</span>
+                            Facebook
+                        </button>
+                    </div>
+
+                    <!-- Sign Up Link -->
+                    <p class="signup-text">
+                        Don't have an account? <a href="#" class="signup-link">Sign up for free</a>
+                    </p>
+                </form>
+            </div>
+
+            <!-- Right Side - Info Panel -->
+            <div class="login-info">
+                <div class="info-content">
+                    <h2>Track Your Progress</h2>
+                    <p>
+                        Access your personalized dashboard to monitor workouts, track nutrition, 
+                        and connect with your trainer. Your fitness journey continues here.
+                    </p>
+
+                    <div class="info-features">
+                        <div class="info-feature-item">
+                            <span class="info-icon">📊</span>
+                            <div>
+                                <h4>Progress Analytics</h4>
+                                <p>View detailed reports and insights</p>
+                            </div>
+                        </div>
+
+                        <div class="info-feature-item">
+                            <span class="info-icon">💪</span>
+                            <div>
+                                <h4>Workout Library</h4>
+                                <p>Access 1000+ exercises and plans</p>
+                            </div>
+                        </div>
+
+                        <div class="info-feature-item">
+                            <span class="info-icon">🎯</span>
+                            <div>
+                                <h4>Goal Tracking</h4>
+                                <p>Set and achieve your fitness goals</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trust-indicators">
+                        <div class="trust-item">
+                            <strong>50,000+</strong>
+                            <span>Active Members</span>
+                        </div>
+                        <div class="trust-item">
+                            <strong>4.8/5</strong>
+                            <span>User Rating</span>
+                        </div>
+                        <div class="trust-item">
+                            <strong>1M+</strong>
+                            <span>Workouts Logged</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================
+         FOOTER - Minimal for Login Page
+         ================================ -->
+    <footer class="login-footer">
+        <div class="container">
+            <div class="footer-links-minimal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="contact.html">Help & Support</a>
+            </div>
+            <p>&copy; 2024 FitPro. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
