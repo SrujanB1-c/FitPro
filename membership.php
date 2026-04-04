@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,28 +7,29 @@
     <meta name="description" content="Choose the perfect FitPro membership plan for your fitness journey">
     <title>Membership Plans - FitPro Fitness Management</title>
     
-    <!-- Stylesheet -->
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- ================================
-         NAVIGATION BAR
-         ================================ -->
     <nav>
         <div class="container">
-            <a href="index.html" class="logo">FitPro</a>
+            <a href="index.php" class="logo">FitPro</a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="membership.html" class="active">Membership</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="features.php">Features</a></li>
+                <li><a href="membership.php" class="active">Membership</a></li>
+                <li><a href="schedule.php">Schedule</a></li>
+                <li><a href="contact.php">Contact</a></li>
+                <?php if(isset($_SESSION['user_id'])): ?>
+                    <li><a href="profile.php">Dashboard</a></li>
+                    <li><a href="profile.php?action=logout">Logout</a></li>
+                <?php else: ?>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="register.php">Register</a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
-
-    <!-- ================================
-         HERO SECTION
-         ================================ -->
     <section class="hero">
         <div class="hero-content">
             <h1>Choose Your Path<br>To Transformation</h1>
@@ -37,10 +39,6 @@
             </p>
         </div>
     </section>
-
-    <!-- ================================
-         PRICING SECTION
-         ================================ -->
     <section class="overview">
         <div class="container">
             <div class="section-header">
@@ -52,12 +50,12 @@
             </div>
             
             <div class="pricing-grid">
-                <!-- Basic Plan -->
+                
                 <div class="pricing-card">
                     <h3>Basic</h3>
                     <div class="pricing-price">
-                        <span class="currency">$</span>
-                        <span class="amount">19</span>
+                        <span class="currency">₹</span>
+                        <span class="amount">199</span>
                         <span class="period">/month</span>
                     </div>
                     <p>Perfect for getting started on your fitness journey</p>
@@ -73,16 +71,16 @@
                         <li>Basic goal setting tools</li>
                     </ul>
                     
-                    <a href="contact.html" class="btn btn-secondary">Get Started</a>
+                    <a href="register.php" class="btn btn-primary">Get Started</a>
                 </div>
 
-                <!-- Standard Plan - Featured -->
+                
                 <div class="pricing-card featured">
                     <span class="pricing-badge">MOST POPULAR</span>
                     <h3>Standard</h3>
                     <div class="pricing-price">
-                        <span class="currency">$</span>
-                        <span class="amount">39</span>
+                        <span class="currency">₹</span>
+                        <span class="amount">399</span>
                         <span class="period">/month</span>
                     </div>
                     <p>Ideal for serious fitness enthusiasts seeking results</p>
@@ -100,16 +98,16 @@
                         <li>Priority customer support</li>
                     </ul>
                     
-                    <a href="contact.html" class="btn btn-primary">Get Started</a>
+                    <a href="register.php" class="btn btn-primary">Get Started</a>
                 </div>
 
-                <!-- Premium Plan -->
+                
                 <div class="pricing-card">
                     <span class="pricing-badge">BEST VALUE</span>
                     <h3>Premium</h3>
                     <div class="pricing-price">
-                        <span class="currency">$</span>
-                        <span class="amount">69</span>
+                        <span class="currency">₹</span>
+                        <span class="amount">699</span>
                         <span class="period">/month</span>
                     </div>
                     <p>Ultimate package for complete fitness transformation</p>
@@ -129,15 +127,11 @@
                         <li>Free fitness merchandise</li>
                     </ul>
                     
-                    <a href="contact.html" class="btn btn-primary">Get Started</a>
+                    <a href="register.php" class="btn btn-primary">Get Started</a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- ================================
-         COMPARISON SECTION
-         ================================ -->
     <section class="overview">
         <div class="container">
             <div class="section-header">
@@ -149,7 +143,7 @@
             </div>
             
             <div class="overview-grid">
-                <!-- Benefit 1 -->
+                
                 <div class="overview-card">
                     <span class="overview-icon">💰</span>
                     <h3>No Hidden Fees</h3>
@@ -159,7 +153,7 @@
                     </p>
                 </div>
 
-                <!-- Benefit 2 -->
+                
                 <div class="overview-card">
                     <span class="overview-icon">🔄</span>
                     <h3>Flexible Upgrades</h3>
@@ -169,7 +163,7 @@
                     </p>
                 </div>
 
-                <!-- Benefit 3 -->
+                
                 <div class="overview-card">
                     <span class="overview-icon">🎁</span>
                     <h3>Money-Back Guarantee</h3>
@@ -179,7 +173,7 @@
                     </p>
                 </div>
 
-                <!-- Benefit 4 -->
+                
                 <div class="overview-card">
                     <span class="overview-icon">👥</span>
                     <h3>Family Discounts</h3>
@@ -189,7 +183,7 @@
                     </p>
                 </div>
 
-                <!-- Benefit 5 -->
+                
                 <div class="overview-card">
                     <span class="overview-icon">🏢</span>
                     <h3>Corporate Wellness</h3>
@@ -199,7 +193,7 @@
                     </p>
                 </div>
 
-                <!-- Benefit 6 -->
+                
                 <div class="overview-card">
                     <span class="overview-icon">🎓</span>
                     <h3>Student Discount</h3>
@@ -211,10 +205,6 @@
             </div>
         </div>
     </section>
-
-    <!-- ================================
-         FAQ SECTION
-         ================================ -->
     <section class="overview">
         <div class="container">
             <div class="section-header">
@@ -225,7 +215,7 @@
             </div>
             
             <div class="overview-grid">
-                <!-- FAQ 1 -->
+                
                 <div class="overview-card">
                     <h3>Can I change my plan later?</h3>
                     <p>
@@ -234,7 +224,7 @@
                     </p>
                 </div>
 
-                <!-- FAQ 2 -->
+                
                 <div class="overview-card">
                     <h3>Is there a contract period?</h3>
                     <p>
@@ -244,7 +234,7 @@
                     </p>
                 </div>
 
-                <!-- FAQ 3 -->
+                
                 <div class="overview-card">
                     <h3>What payment methods do you accept?</h3>
                     <p>
@@ -253,7 +243,7 @@
                     </p>
                 </div>
 
-                <!-- FAQ 4 -->
+                
                 <div class="overview-card">
                     <h3>Do you offer refunds?</h3>
                     <p>
@@ -262,7 +252,7 @@
                     </p>
                 </div>
 
-                <!-- FAQ 5 -->
+                
                 <div class="overview-card">
                     <h3>Can I pause my membership?</h3>
                     <p>
@@ -271,7 +261,7 @@
                     </p>
                 </div>
 
-                <!-- FAQ 6 -->
+                
                 <div class="overview-card">
                     <h3>Are trainer sessions in-person or virtual?</h3>
                     <p>
@@ -283,10 +273,6 @@
             </div>
         </div>
     </section>
-
-    <!-- ================================
-         CALL TO ACTION SECTION
-         ================================ -->
     <section class="overview">
         <div class="container">
             <div class="section-header">
@@ -296,19 +282,15 @@
                     stronger version of themselves.
                 </p>
                 <div class="hero-buttons mt-4">
-                    <a href="contact.html" class="btn btn-primary btn-large">Start Your Free Trial</a>
-                    <a href="features.html" class="btn btn-secondary btn-large">Explore Features</a>
+                    <a href="register.php" class="btn btn-primary btn-large">Start Your Free Trial</a>
+                    <a href="features.php" class="btn btn-secondary btn-large">Explore Features</a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- ================================
-         FOOTER
-         ================================ -->
     <footer>
         <div class="footer-content">
-            <!-- About Section -->
+            
             <div class="footer-section">
                 <h3>FitPro</h3>
                 <p>
@@ -318,25 +300,25 @@
                 </p>
             </div>
 
-            <!-- Quick Links -->
+            
             <div class="footer-section">
                 <h3>Quick Links</h3>
-                <a href="index.html">Home</a>
-                <a href="features.html">Features</a>
-                <a href="membership.html">Membership Plans</a>
-                <a href="contact.html">Contact Us</a>
+                <a href="index.php">Home</a>
+                <a href="features.php">Features</a>
+                <a href="membership.php">Membership Plans</a>
+                <a href="contact.php">Contact Us</a>
             </div>
 
-            <!-- Contact Information -->
+            
             <div class="footer-section">
                 <h3>Contact Us</h3>
-                <p>📧 Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0e7d7b7e7e617c7a4e68677a7e7c61206d6163">[email&#160;protected]</a></p>
+                <p>📧 Email: <a href="mailto:support@fitpro.com">support@fitpro.com</a></p>
                 <p>📞 Phone: +1 (555) 123-4567</p>
                 <p>📍 Address: 123 Fitness Avenue, Health City, HC 12345</p>
                 <p>🕐 Hours: Mon-Fri: 6AM - 10PM, Sat-Sun: 7AM - 8PM</p>
             </div>
 
-            <!-- Social Media -->
+            
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <p>Stay connected and get daily fitness inspiration</p>
@@ -348,6 +330,9 @@
                 </div>
             </div>
         </div>
-
         <div class="footer-bottom">
-            <p>&copy; 2024 FitPro - Online Fitness Mana
+            <p>&copy; 2024 FitPro - Online Fitness Management System. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

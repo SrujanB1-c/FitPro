@@ -1,11 +1,4 @@
-/* ============================================
-   ONLINE FITNESS MANAGEMENT SYSTEM - STYLESHEET
-   Clean, Minimal Design with Natural Aesthetics
-   ============================================ */
-
-/* CSS Variables for Consistent Theming */
 :root {
-    /* Color Palette - Calm & Professional */
     --primary-color: #2c5f2d;
     --primary-light: #97c88e;
     --accent-color: #e97451;
@@ -16,22 +9,15 @@
     --text-body: #4a4a4a;
     --text-light: #757575;
     --border-color: #e5e5e0;
-    
-    /* Typography */
+
     --font-display: 'Georgia', 'Times New Roman', serif;
     --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    
-    /* Spacing */
+
     --container-max: 1140px;
     --section-padding: 90px 24px;
-    
-    /* Transitions */
+
     --transition: 0.25s ease;
 }
-
-/* ============================================
-   GLOBAL RESET & BASE STYLES
-   ============================================ */
 
 * {
     margin: 0;
@@ -52,11 +38,12 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* ============================================
-   TYPOGRAPHY
-   ============================================ */
-
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-display);
     font-weight: 400;
     line-height: 1.2;
@@ -83,10 +70,6 @@ p {
     color: var(--text-body);
     margin-bottom: 1rem;
 }
-
-/* ============================================
-   NAVIGATION BAR
-   ============================================ */
 
 nav {
     position: fixed;
@@ -160,10 +143,6 @@ nav .container {
     width: 100%;
 }
 
-/* ============================================
-   BUTTONS
-   ============================================ */
-
 .btn {
     display: inline-block;
     padding: 14px 32px;
@@ -203,10 +182,6 @@ nav .container {
     padding: 16px 40px;
     font-size: 1rem;
 }
-
-/* ============================================
-   HERO SECTION
-   ============================================ */
 
 .hero {
     min-height: 85vh;
@@ -259,10 +234,6 @@ nav .container {
     flex-wrap: wrap;
 }
 
-/* ============================================
-   SECTION CONTAINERS
-   ============================================ */
-
 .container {
     max-width: var(--container-max);
     margin: 0 auto;
@@ -289,10 +260,6 @@ section {
     margin: 0 auto;
     line-height: 1.6;
 }
-
-/* ============================================
-   OVERVIEW SECTION
-   ============================================ */
 
 .overview {
     background: var(--bg-white);
@@ -337,10 +304,6 @@ section {
     color: var(--text-body);
     line-height: 1.6;
 }
-
-/* ============================================
-   FEATURES PAGE - CARDS LAYOUT
-   ============================================ */
 
 .features-grid {
     display: grid;
@@ -406,10 +369,6 @@ section {
     flex-shrink: 0;
     margin-top: 2px;
 }
-
-/* ============================================
-   MEMBERSHIP / PRICING SECTION
-   ============================================ */
 
 .pricing-grid {
     display: grid;
@@ -518,10 +477,6 @@ section {
     text-align: center;
 }
 
-/* ============================================
-   CONTACT FORM
-   ============================================ */
-
 .contact-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -567,6 +522,83 @@ section {
     flex-shrink: 0;
 }
 
+/* Contact Form Styles */
+.contact-form-container {
+    perspective: 1000px;
+}
+
+.contact-form-card {
+    background: var(--bg-white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+}
+
+.contact-form-card h3 {
+    margin-bottom: 2rem;
+    color: var(--text-dark);
+    font-size: 1.5rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: 0.875rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    transition: var(--transition);
+    background: var(--bg-main);
+    width: 100%;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-light);
+    background: var(--bg-white);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9375rem;
+}
+
+.alert-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #065f46;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
 .info-content h4 {
     margin-bottom: 0.375rem;
     color: var(--text-dark);
@@ -580,56 +612,6 @@ section {
     font-size: 0.9375rem;
 }
 
-.contact-form {
-    background: var(--bg-white);
-    padding: 2.5rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--text-dark);
-    font-weight: 500;
-    font-size: 0.9375rem;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    background: var(--bg-main);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    color: var(--text-dark);
-    font-size: 0.9375rem;
-    font-family: var(--font-body);
-    transition: var(--transition);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    background: var(--bg-white);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 140px;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: var(--text-light);
-}
-
-/* Social Media Links */
 .social-links {
     display: flex;
     gap: 0.75rem;
@@ -658,9 +640,6 @@ section {
     transform: translateY(-2px);
 }
 
-/* ============================================
-   FOOTER
-   ============================================ */
 
 footer {
     background: var(--bg-subtle);
@@ -707,12 +686,8 @@ footer {
     font-size: 0.875rem;
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
-
 @media (max-width: 768px) {
-    /* Navigation - Mobile Menu */
+
     .nav-links {
         flex-direction: column;
         position: fixed;
@@ -727,8 +702,7 @@ footer {
         transition: var(--transition);
         border-left: 1px solid var(--border-color);
     }
-    
-    /* Hero Section */
+
     .hero {
         min-height: 75vh;
         padding-top: 120px;
@@ -740,80 +714,68 @@ footer {
         top: auto;
         bottom: 0;
     }
-    
+
     .hero-buttons {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .hero-buttons .btn {
         width: 100%;
         max-width: 280px;
     }
-    
-    /* Contact Wrapper */
+
     .contact-wrapper {
         grid-template-columns: 1fr;
         gap: 2.5rem;
     }
-    
-    /* Footer */
+
     .footer-content {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
-    /* Pricing Cards */
+
     .pricing-card.featured {
         transform: scale(1);
     }
-    
-    /* Section Padding */
+
     section {
         padding: 60px 24px;
     }
 }
 
 @media (max-width: 480px) {
-    /* Typography */
+
     h1 {
         font-size: 2rem;
     }
-    
+
     h2 {
         font-size: 1.625rem;
     }
-    
-    /* Buttons */
+
     .btn {
         padding: 12px 28px;
         font-size: 0.9375rem;
     }
-    
-    /* Cards */
+
     .feature-card,
     .pricing-card,
     .contact-form {
         padding: 1.75rem;
     }
-    
-    /* Form */
+
     .form-group input,
     .form-group textarea {
         padding: 0.75rem;
     }
 
-    /* Grid adjustments */
     .overview-grid,
     .features-grid,
     .pricing-grid {
         grid-template-columns: 1fr;
     }
 }
-
-/* ============================================
-   UTILITY CLASSES
-   ============================================ */
 
 .text-center {
     text-align: center;
@@ -826,10 +788,6 @@ footer {
 .mb-4 {
     margin-bottom: 3rem;
 }
-
-/* ============================================
-   LOGIN PAGE STYLES
-   ============================================ */
 
 .login-section {
     min-height: 100vh;
@@ -993,7 +951,6 @@ footer {
     text-decoration: underline;
 }
 
-/* Login Info Panel */
 .login-info {
     background: var(--bg-subtle);
     padding: 3rem 2.5rem;
@@ -1007,7 +964,7 @@ footer {
     margin-bottom: 1rem;
 }
 
-.info-content > p {
+.info-content>p {
     color: var(--text-body);
     margin-bottom: 2.5rem;
     line-height: 1.6;
@@ -1070,7 +1027,6 @@ footer {
     color: var(--text-body);
 }
 
-/* Login Footer */
 .login-footer {
     background: var(--bg-white);
     padding: 2rem 24px;
@@ -1103,7 +1059,6 @@ footer {
     margin: 0;
 }
 
-/* Login Page Responsive */
 @media (max-width: 768px) {
     .login-container {
         grid-template-columns: 1fr;
@@ -1155,4 +1110,58 @@ footer {
         flex-direction: column;
         gap: 0.75rem;
     }
+}
+
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax-hero {
+    background-image: url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?fit=crop&w=1920&q=80');
+    position: relative;
+}
+
+.parallax-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 0;
+}
+
+.hero-content {
+    z-index: 2;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.parallax-hero h1,
+.parallax-hero .hero-tagline {
+    color: white;
+}
+
+.error-input {
+    border-color: #dc3545 !important;
+    background-color: #fff8f8 !important;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+.error-message.visible {
+    display: block;
+}
+
+.success-input {
+    border-color: #28a745 !important;
 }

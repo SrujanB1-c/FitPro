@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,28 +7,29 @@
     <meta name="description" content="Discover powerful features that make FitPro the ultimate fitness management platform">
     <title>Features - FitPro Fitness Management</title>
     
-    <!-- Stylesheet -->
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- ================================
-         NAVIGATION BAR
-         ================================ -->
     <nav>
         <div class="container">
-            <a href="index.html" class="logo">FitPro</a>
+            <a href="index.php" class="logo">FitPro</a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="features.html" class="active">Features</a></li>
-                <li><a href="membership.html">Membership</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="features.php" class="active">Features</a></li>
+                <li><a href="membership.php">Membership</a></li>
+                <li><a href="schedule.php">Schedule</a></li>
+                <li><a href="contact.php">Contact</a></li>
+                <?php if(isset($_SESSION['user_id'])): ?>
+                    <li><a href="profile.php">Dashboard</a></li>
+                    <li><a href="profile.php?action=logout">Logout</a></li>
+                <?php else: ?>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="register.php">Register</a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
-
-    <!-- ================================
-         HERO SECTION
-         ================================ -->
     <section class="hero">
         <div class="hero-content">
             <h1>Powerful Features<br>For Your Success</h1>
@@ -37,10 +39,6 @@
             </p>
         </div>
     </section>
-
-    <!-- ================================
-         FEATURES SECTION
-         ================================ -->
     <section class="overview">
         <div class="container">
             <div class="section-header">
@@ -52,7 +50,7 @@
             </div>
             
             <div class="features-grid">
-                <!-- Feature 1: Workout Tracking -->
+                
                 <div class="feature-card">
                     <div class="feature-icon">💪</div>
                     <h3>Workout Tracking</h3>
@@ -71,7 +69,7 @@
                     </ul>
                 </div>
 
-                <!-- Feature 2: Diet Plan Management -->
+                
                 <div class="feature-card">
                     <div class="feature-icon">🥗</div>
                     <h3>Diet Plan Management</h3>
@@ -90,7 +88,7 @@
                     </ul>
                 </div>
 
-                <!-- Feature 3: Trainer Booking -->
+                
                 <div class="feature-card">
                     <div class="feature-icon">🎓</div>
                     <h3>Personal Trainer Booking</h3>
@@ -109,7 +107,7 @@
                     </ul>
                 </div>
 
-                <!-- Feature 4: Progress Reports -->
+                
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
                     <h3>Comprehensive Progress Reports</h3>
@@ -128,7 +126,7 @@
                     </ul>
                 </div>
 
-                <!-- Feature 5: Community & Challenges -->
+                
                 <div class="feature-card">
                     <div class="feature-icon">🏆</div>
                     <h3>Community & Challenges</h3>
@@ -147,7 +145,7 @@
                     </ul>
                 </div>
 
-                <!-- Feature 6: Smart Recommendations -->
+                
                 <div class="feature-card">
                     <div class="feature-icon">🤖</div>
                     <h3>AI-Powered Recommendations</h3>
@@ -166,7 +164,7 @@
                     </ul>
                 </div>
 
-                <!-- Feature 7: Mobile App Integration -->
+                
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
                     <h3>Mobile App Integration</h3>
@@ -185,7 +183,7 @@
                     </ul>
                 </div>
 
-                <!-- Feature 8: Video Library -->
+                
                 <div class="feature-card">
                     <div class="feature-icon">🎥</div>
                     <h3>Exercise Video Library</h3>
@@ -204,7 +202,7 @@
                     </ul>
                 </div>
 
-                <!-- Feature 9: Goal Setting & Tracking -->
+                
                 <div class="feature-card">
                     <div class="feature-icon">🎯</div>
                     <h3>Goal Setting & Tracking</h3>
@@ -225,10 +223,6 @@
             </div>
         </div>
     </section>
-
-    <!-- ================================
-         CALL TO ACTION SECTION
-         ================================ -->
     <section class="overview">
         <div class="container">
             <div class="section-header">
@@ -237,19 +231,15 @@
                     Join thousands of satisfied members who are already transforming their lives with FitPro.
                 </p>
                 <div class="hero-buttons mt-4">
-                    <a href="membership.html" class="btn btn-primary btn-large">Choose Your Plan</a>
-                    <a href="contact.html" class="btn btn-secondary btn-large">Have Questions?</a>
+                    <a href="membership.php" class="btn btn-primary btn-large">Choose Your Plan</a>
+                    <a href="contact.php" class="btn btn-secondary btn-large">Have Questions?</a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- ================================
-         FOOTER
-         ================================ -->
     <footer>
         <div class="footer-content">
-            <!-- About Section -->
+            
             <div class="footer-section">
                 <h3>FitPro</h3>
                 <p>
@@ -259,25 +249,25 @@
                 </p>
             </div>
 
-            <!-- Quick Links -->
+            
             <div class="footer-section">
                 <h3>Quick Links</h3>
-                <a href="index.html">Home</a>
-                <a href="features.html">Features</a>
-                <a href="membership.html">Membership Plans</a>
-                <a href="contact.html">Contact Us</a>
+                <a href="index.php">Home</a>
+                <a href="features.php">Features</a>
+                <a href="membership.php">Membership Plans</a>
+                <a href="contact.php">Contact Us</a>
             </div>
 
-            <!-- Contact Information -->
+            
             <div class="footer-section">
                 <h3>Contact Us</h3>
-                <p>📧 Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="63101613130c111723050a1713110c4d000c0e">[email&#160;protected]</a></p>
+                <p>📧 Email: <a href="mailto:support@fitpro.com">support@fitpro.com</a></p>
                 <p>📞 Phone: +1 (555) 123-4567</p>
                 <p>📍 Address: 123 Fitness Avenue, Health City, HC 12345</p>
                 <p>🕐 Hours: Mon-Fri: 6AM - 10PM, Sat-Sun: 7AM - 8PM</p>
             </div>
 
-            <!-- Social Media -->
+            
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <p>Stay connected and get daily fitness inspiration</p>
@@ -289,6 +279,9 @@
                 </div>
             </div>
         </div>
-
         <div class="footer-bottom">
-            <p>&copy; 2024 FitPro - Online Fitness Mana
+            <p>&copy; 2024 FitPro - Online Fitness Management System. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
