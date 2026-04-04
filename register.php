@@ -239,155 +239,118 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
             function showError(inputId, errorId, message) {
                 const input = document.getElementById(inputId);
                 const error = document.getElementById(errorId);
-                input.classList.add('error-input');
-                input.classList.remove('success-input');
-                error.textContent = message;
-                error.classList.add('visible');
+                if (input) { input.classList.add('error-input'); input.classList.remove('success-input'); }
+                if (error) { error.textContent = message; error.classList.add('visible'); }
             }
 
             function clearError(inputId, errorId) {
                 const input = document.getElementById(inputId);
                 const error = document.getElementById(errorId);
-                input.classList.remove('error-input');
-                input.classList.add('success-input');
-                error.classList.remove('visible');
+                if (input) { input.classList.remove('error-input'); input.classList.add('success-input'); }
+                if (error) { error.classList.remove('visible'); }
             }
 
-            // 1. First Name validation
+            // 1. First Name
             const firstName = document.getElementById('firstName').value.trim();
             if(firstName.length < 2) {
-                showError('firstName', 'firstNameError', 'First name must be at least 2 characters');
+                showError('firstName', 'firstNameError', 'First name is required (min 2 chars)');
                 isValid = false;
-            } else {
-                clearError('firstName', 'firstNameError');
-            }
+            } else { clearError('firstName', 'firstNameError'); }
 
-            // 2. Last Name validation
+            // 2. Last Name
             const lastName = document.getElementById('lastName').value.trim();
             if(lastName.length < 2) {
-                showError('lastName', 'lastNameError', 'Last name must be at least 2 characters');
+                showError('lastName', 'lastNameError', 'Last name is required (min 2 chars)');
                 isValid = false;
-            } else {
-                clearError('lastName', 'lastNameError');
-            }
+            } else { clearError('lastName', 'lastNameError'); }
 
-            // 3. Email validation
+            // 3. Email
             const email = document.getElementById('email').value.trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if(!emailRegex.test(email)) {
                 showError('email', 'emailError', 'Please enter a valid email address');
                 isValid = false;
-            } else {
-                clearError('email', 'emailError');
-            }
+            } else { clearError('email', 'emailError'); }
 
-
-            // 5. Weight validation
-            const weight = document.getElementById('weight').value;
-            if(weight < 20 || weight > 300) {
-                showError('weight', 'weightError', 'Weight must be between 20 and 300 kg');
-                isValid = false;
-            } else {
-                clearError('weight', 'weightError');
-            }
-
-            // 6. Height validation
-            const heightFt = document.getElementById('height_ft').value;
-            const heightIn = document.getElementById('height_in').value;
-            if(heightFt < 1 || heightFt > 8 || heightIn < 0 || heightIn > 11) {
-                showError('height_ft', 'heightError', 'Enter valid height (1-8 ft, 0-11 in)');
-                isValid = false;
-            } else {
-                clearError('height_ft', 'heightError');
-            }
-            const email = document.getElementById('email').value.trim();
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if(!emailRegex.test(email)) {
-                showError('email', 'emailError', 'Please enter a valid email address');
-                isValid = false;
-            } else {
-                clearError('email', 'emailError');
-            }
-
-            // 4. Password validation
+            // 4. Password
             const password = document.getElementById('password').value;
             if(password.length < 8) {
                 showError('password', 'passwordError', 'Password must be at least 8 characters');
                 isValid = false;
-            } else {
-                clearError('password', 'passwordError');
-            }
+            } else { clearError('password', 'passwordError'); }
 
-            // 5. Confirm Password validation
+            // 5. Confirm Password
             const confirmPassword = document.getElementById('confirmPassword').value;
             if(confirmPassword === '' || confirmPassword !== password) {
                 showError('confirmPassword', 'confirmPasswordError', 'Passwords do not match');
                 isValid = false;
-            } else {
-                clearError('confirmPassword', 'confirmPasswordError');
-            }
+            } else { clearError('confirmPassword', 'confirmPasswordError'); }
 
-            // 6. Phone validation
+            // 6. Phone
             const phone = document.getElementById('phone').value.trim();
             const phoneRegex = /^[0-9]{10}$/;
             if(!phoneRegex.test(phone)) {
-                showError('phone', 'phoneError', 'Valid 10-digit phone number needed');
+                showError('phone', 'phoneError', 'Enter a valid 10-digit phone number');
                 isValid = false;
-            } else {
-                clearError('phone', 'phoneError');
-            }
+            } else { clearError('phone', 'phoneError'); }
 
-            // 7. DOB validation
+            // 7. DOB
             const dob = document.getElementById('dob').value;
             if(dob === '') {
                 showError('dob', 'dobError', 'Date of birth is required');
                 isValid = false;
-            } else {
-                clearError('dob', 'dobError');
-            }
+            } else { clearError('dob', 'dobError'); }
 
-            // 8. Gender validation
+            // 8. Gender
             const genderOptions = document.getElementsByName('gender');
             let genderSelected = false;
-            for(let i=0; i<genderOptions.length; i++) {
+            for(let i = 0; i < genderOptions.length; i++) {
                 if(genderOptions[i].checked) genderSelected = true;
             }
             if(!genderSelected) {
+                document.getElementById('genderError').textContent = 'Please select your gender';
                 document.getElementById('genderError').classList.add('visible');
                 isValid = false;
-            } else {
-                document.getElementById('genderError').classList.remove('visible');
-            }
+            } else { document.getElementById('genderError').classList.remove('visible'); }
 
-            // 9. Address validation
+            // 9. Weight
+            const weight = document.getElementById('weight').value;
+            if(weight === '' || weight < 20 || weight > 300) {
+                showError('weight', 'weightError', 'Enter a valid weight between 20-300 kg');
+                isValid = false;
+            } else { clearError('weight', 'weightError'); }
+
+            // 10. Height
+            const heightFt = document.getElementById('height_ft').value;
+            if(heightFt === '' || heightFt < 1 || heightFt > 8) {
+                showError('height_ft', 'heightError', 'Enter a valid height (1-8 ft)');
+                isValid = false;
+            } else { clearError('height_ft', 'heightError'); }
+
+            // 11. Address
             const address = document.getElementById('address').value.trim();
             if(address.length < 10) {
-                showError('address', 'addressError', 'Address is too short');
+                showError('address', 'addressError', 'Address must be at least 10 characters');
                 isValid = false;
-            } else {
-                clearError('address', 'addressError');
-            }
+            } else { clearError('address', 'addressError'); }
 
-            // 10. Plan validation
+            // 12. Plan
             const plan = document.getElementById('plan').value;
             if(plan === '') {
                 showError('plan', 'planError', 'Please select a membership plan');
                 isValid = false;
-            } else {
-                clearError('plan', 'planError');
-            }
+            } else { clearError('plan', 'planError'); }
 
-            // 11. Terms validation
+            // 13. Terms
             const terms = document.getElementById('terms').checked;
             if(!terms) {
+                document.getElementById('termsError').textContent = 'You must agree to the terms';
                 document.getElementById('termsError').classList.add('visible');
                 isValid = false;
-            } else {
-                document.getElementById('termsError').classList.remove('visible');
-            }
+            } else { document.getElementById('termsError').classList.remove('visible'); }
 
             if(!isValid) {
-                event.preventDefault(); // Prevent form submission if validation fails
+                event.preventDefault();
             }
         });
     </script>
