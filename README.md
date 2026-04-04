@@ -25,3 +25,15 @@ This project relies on PHP and MySQL. It is recommended to run this locally usin
 5. Create a new database named `fitpro_db`.
 6. Import the included `database.sql` file into `fitpro_db` to set up tables and mock data.
 7. Access the application in your browser at `http://localhost/FitPro/index.php`.
+
+## Alternative: Run with PHP Dev Server (No Apache Required)
+
+If XAMPP Apache is not available, use PHP's built-in development server:
+
+1. Open Command Prompt and run:
+   ```
+   C:\xampp\php\php.exe -S localhost:8000 -t "C:\path\to\FitPro"
+   ```
+2. Access the application at `http://localhost:8000/index.php`.
+
+> **Note:** MySQL must still be running (via XAMPP Control Panel) for database features to work.
