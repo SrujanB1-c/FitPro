@@ -19,6 +19,7 @@
     <nav>
         <div class="container">
             <a href="index.php" class="logo">FitPro</a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
             <ul class="nav-links">
                 <li><a href="index.php" class="active">Home</a></li>
                 <li><a href="features.php">Features</a></li>
@@ -189,5 +190,17 @@
             <p>&copy; 2024 FitPro - Online Fitness Management System. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
 </body>
 </html>

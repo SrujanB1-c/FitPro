@@ -143,6 +143,15 @@ nav .container {
     width: 100%;
 }
 
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: var(--text-dark);
+}
+
 .btn {
     display: inline-block;
     padding: 14px 32px;
@@ -701,6 +710,14 @@ footer {
         gap: 1.5rem;
         transition: var(--transition);
         border-left: 1px solid var(--border-color);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .menu-toggle {
+        display: block;
     }
 
     .hero {

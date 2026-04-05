@@ -56,6 +56,7 @@ session_start();
     <nav>
         <div class="container">
             <a href="index.php" class="logo">FitPro</a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="features.php">Features</a></li>
@@ -195,6 +196,18 @@ session_start();
             classFilter.addEventListener('change', function() {
                 fetchClasses(this.value);
             });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
         });
     </script>
 </body>

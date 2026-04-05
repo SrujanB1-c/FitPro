@@ -48,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <nav>
         <div class="container">
             <a href="index.php" class="logo">FitPro</a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="features.php">Features</a></li>
@@ -254,6 +255,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if(!isValid) {
                 event.preventDefault();
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
             }
         });
     </script>
