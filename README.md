@@ -32,7 +32,7 @@ If XAMPP Apache is not available, use PHP's built-in development server:
 
 1. Open Command Prompt and run:
    ```
-   C:\xampp\php\php.exe -S localhost:8000 -t "C:\path\to\FitPro"
+   C:\xampp\php\php.exe -S localhost:8000
    ```
 2. Access the application at `http://localhost:8000/index.php`.
 
