@@ -203,17 +203,6 @@ nav .container {
     position: relative;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 40%;
-    height: 100%;
-    background: var(--bg-subtle);
-    z-index: 0;
-}
-
 .hero-content {
     max-width: var(--container-max);
     text-align: center;
