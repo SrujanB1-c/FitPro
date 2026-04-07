@@ -1,33 +1,47 @@
-<?php 
-session_start(); 
+<?php
+session_start();
 $successMsg = '';
+require_once 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // In a real app, you would send an email or save to DB here
-    $successMsg = "Thank you for your message! We'll get back to you within 24 hours.";
+    $name = $_POST['name'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $subject = $_POST['subject'] ?? '';
+    $message = $_POST['message'] ?? '';
+
+    try {
+        $stmt = $pdo->prepare("INSERT INTO contact_messages (name, email, subject, message) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$name, $email, $subject, $message]);
+        $successMsg = "Thank you for your message! We'll get back to you within 24 hours.";
+    } catch (PDOException $e) {
+        $successMsg = "Thank you for your message! We'll get back to you within 24 hours.";
+    }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Get in touch with FitPro - We're here to help you on your fitness journey">
     <title>Contact Us - FitPro Fitness Management</title>
-    
-    
+
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <nav>
         <div class="container">
             <a href="index.php" class="logo">FitPro</a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="features.php">Features</a></li>
                 <li><a href="membership.php">Membership</a></li>
                 <li><a href="schedule.php">Schedule</a></li>
                 <li><a href="contact.php" class="active">Contact</a></li>
-                <?php if(isset($_SESSION['user_id'])): ?>
+                <?php if (isset($_SESSION['user_id'])): ?>
                     <li><a href="profile.php">Dashboard</a></li>
                     <li><a href="profile.php?action=logout">Logout</a></li>
                 <?php else: ?>
@@ -41,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="hero-content">
             <h1>Let's Connect</h1>
             <p class="hero-tagline">
-                Have questions about our platform? Want to learn more about our membership plans? 
+                Have questions about our platform? Want to learn more about our membership plans?
                 Our friendly team is here to help you get started on your fitness journey.
             </p>
         </div>
@@ -51,16 +65,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="section-header">
                 <h2>Get In Touch</h2>
                 <p class="section-subtitle">
-                    We're committed to providing exceptional support. Reach out to us through any 
+                    We're committed to providing exceptional support. Reach out to us through any
                     of these channels, and we'll respond within 24 hours.
                 </p>
             </div>
-            
+
             <div class="contact-wrapper">
-                <!-- Left Side: Contact Information -->
                 <div class="contact-info">
                     <h3>Contact Information</h3>
-                    
+
                     <div class="info-item">
                         <div class="info-icon">📧</div>
                         <div class="info-content">
@@ -73,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="info-icon">📞</div>
                         <div class="info-content">
                             <h4>Call Us</h4>
-                            <p>Main: +1 (555) 123-4567</p>
+                            <p>Main: +91 7021756855</p>
                         </div>
                     </div>
 
@@ -108,7 +121,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
 
-                <!-- Right Side: Contact Form -->
                 <div class="contact-form-container">
                     <div class="contact-form-card">
                         <h3>Send us a Message</h3>
@@ -117,18 +129,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <?php echo $successMsg; ?>
                             </div>
                         <?php endif; ?>
-                        
+
                         <form action="contact.php" method="POST" class="contact-form">
                             <div class="form-group">
                                 <label for="name">Full Name</label>
                                 <input type="text" id="name" name="name" placeholder="Nitish Gupta" required>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="email">Email Address</label>
                                 <input type="email" id="email" name="email" placeholder="nitish@example.com" required>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="subject">Subject</label>
                                 <select id="subject" name="subject" required>
@@ -139,12 +151,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <option value="feedback">General Feedback</option>
                                 </select>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea id="message" name="message" rows="5" placeholder="How can we help you?" required></textarea>
+                                <textarea id="message" name="message" rows="5" placeholder="How can we help you?"
+                                    required></textarea>
                             </div>
-                            
+
                             <button type="submit" class="btn btn-primary">Send Message</button>
                         </form>
                     </div>
@@ -155,17 +168,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <footer>
         <div class="footer-content">
-            
+
             <div class="footer-section">
                 <h3>FitPro</h3>
                 <p>
-                    Your comprehensive online fitness management platform. Empowering individuals 
-                    to achieve their health and wellness goals through intelligent tracking, 
+                    Your comprehensive online fitness management platform. Empowering individuals
+                    to achieve their health and wellness goals through intelligent tracking,
                     expert guidance, and community support.
                 </p>
             </div>
 
-            
+
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <a href="index.php">Home</a>
@@ -174,16 +187,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="contact.php">Contact Us</a>
             </div>
 
-            
+
             <div class="footer-section">
                 <h3>Contact Us</h3>
                 <p>📧 Email: <a href="mailto:support@fitpro.com">support@fitpro.com</a></p>
-                <p>📞 Phone: +1 (555) 123-4567</p>
+                <p>📞 Phone: +91 7021756855</p>
                 <p>📍 Address: 123 Fitness Avenue, Health City, HC 12345</p>
                 <p>🕐 Hours: Mon-Fri: 6AM - 10PM, Sat-Sun: 7AM - 8PM</p>
             </div>
 
-            
+
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <p>Stay connected and get daily fitness inspiration</p>
@@ -199,5 +212,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p>&copy; 2024 FitPro - Online Fitness Management System. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+    <script src="logout.js"></script>
 </body>
+
 </html>

@@ -3,6 +3,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,31 +16,44 @@ session_start();
             gap: 1.5rem;
             margin-top: 2rem;
         }
+
         .class-card {
             background: var(--bg-white);
             border: 1px solid var(--border-color);
             padding: 1.5rem;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
         }
+
         .class-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
         }
-        .class-card h3 { color: var(--text-dark); margin-bottom: 0.5rem; }
-        .class-tag { 
-            display: inline-block; 
-            background: var(--bg-subtle); 
+
+        .class-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .class-tag {
+            display: inline-block;
+            background: var(--bg-subtle);
             color: var(--primary-color);
-            padding: 0.25rem 0.75rem; 
-            border-radius: 20px; 
-            font-size: 0.85rem; 
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 1rem;
             border: 1px solid var(--border-color);
         }
-        .class-detail { margin-bottom: 0.5rem; color: var(--text-body); font-size: 0.9375rem; }
+
+        .class-detail {
+            margin-bottom: 0.5rem;
+            color: var(--text-body);
+            font-size: 0.9375rem;
+        }
+
         .filter-section {
             background: var(--bg-white);
             padding: 1.5rem;
@@ -52,17 +66,19 @@ session_start();
         }
     </style>
 </head>
+
 <body>
     <nav>
         <div class="container">
             <a href="index.php" class="logo">FitPro</a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="features.php">Features</a></li>
                 <li><a href="membership.php">Membership</a></li>
                 <li><a href="schedule.php" class="active">Schedule</a></li>
                 <li><a href="contact.php">Contact</a></li>
-                <?php if(isset($_SESSION['user_id'])): ?>
+                <?php if (isset($_SESSION['user_id'])): ?>
                     <li><a href="profile.php">Dashboard</a></li>
                     <li><a href="profile.php?action=logout">Logout</a></li>
                 <?php else: ?>
@@ -82,34 +98,35 @@ session_start();
 
             <div class="filter-section">
                 <label for="classFilter" style="font-weight: 600; color: var(--text-dark);">Filter by Type:</label>
-                <select id="classFilter" style="padding: 0.625rem 1rem; border-radius: 6px; border: 1px solid var(--border-color); outline: none; font-family: var(--font-body); font-size: 0.9375rem; min-width: 200px;">
+                <select id="classFilter"
+                    style="padding: 0.625rem 1rem; border-radius: 6px; border: 1px solid var(--border-color); outline: none; font-family: var(--font-body); font-size: 0.9375rem; min-width: 200px;">
                     <option value="All">All Classes</option>
                     <option value="Yoga">Yoga</option>
                     <option value="Cardio">Cardio</option>
                     <option value="Strength">Strength</option>
                 </select>
-                <span id="loadingIndicator" style="display: none; color: var(--primary-color); font-weight: 500;">â†» Loading...</span>
+                <span id="loadingIndicator" style="display: none; color: var(--primary-color); font-weight: 500;">↻
+                    Loading...</span>
             </div>
 
             <div id="scheduleContainer" class="schedule-grid">
-                <!-- Data will be loaded here via AJAX -->
             </div>
         </div>
     </section>
 
     <footer>
         <div class="footer-content">
-            
+
             <div class="footer-section">
                 <h3>FitPro</h3>
                 <p>
-                    Your comprehensive online fitness management platform. Empowering individuals 
-                    to achieve their health and wellness goals through intelligent tracking, 
+                    Your comprehensive online fitness management platform. Empowering individuals
+                    to achieve their health and wellness goals through intelligent tracking,
                     expert guidance, and community support.
                 </p>
             </div>
 
-            
+
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <a href="index.php">Home</a>
@@ -118,16 +135,16 @@ session_start();
                 <a href="contact.php">Contact Us</a>
             </div>
 
-            
+
             <div class="footer-section">
                 <h3>Contact Us</h3>
                 <p>📧 Email: <a href="mailto:support@fitpro.com">support@fitpro.com</a></p>
-                <p>📞 Phone: +1 (555) 123-4567</p>
+                <p>📞 Phone: +91 7021756855</p>
                 <p>📍 Address: 123 Fitness Avenue, Health City, HC 12345</p>
                 <p>🕐 Hours: Mon-Fri: 6AM - 10PM, Sat-Sun: 7AM - 8PM</p>
             </div>
 
-            
+
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <p>Stay connected and get daily fitness inspiration</p>
@@ -145,7 +162,7 @@ session_start();
     </footer>
     <!-- AJAX Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const classFilter = document.getElementById('classFilter');
             const scheduleContainer = document.getElementById('scheduleContainer');
             const loadingIndicator = document.getElementById('loadingIndicator');
@@ -158,22 +175,35 @@ session_start();
                     .then(response => response.json())
                     .then(data => {
                         loadingIndicator.style.display = 'none';
-                        if(data.status === 'success') {
+                        if (data.status === 'success') {
                             const classes = data.data;
-                            if(classes.length === 0) {
+                            if (classes.length === 0) {
                                 scheduleContainer.innerHTML = '<p style="color: var(--text-light);">No classes found for this category at the moment.</p>';
                                 return;
                             }
-                            
+
                             classes.forEach(cls => {
                                 const card = document.createElement('div');
                                 card.className = 'class-card';
+
+                                let actionButton = '';
+                                if (data.is_logged_in) {
+                                    if (cls.is_booked) {
+                                        actionButton = `<button class="btn" disabled style="background-color: var(--bg-subtle); color: var(--text-light); width: 100%; margin-top: 1rem; border: 1px solid var(--border-color);">Booked</button>`;
+                                    } else {
+                                        actionButton = `<button class="btn btn-primary" onclick="bookClass(${cls.id}, this)" style="width: 100%; margin-top: 1rem;">Book Class</button>`;
+                                    }
+                                } else {
+                                    actionButton = `<a href="login.php" class="btn" style="background-color: var(--bg-subtle); width: 100%; text-align: center; display: block; margin-top: 1rem; border: 1px solid var(--border-color); color: var(--text-main);">Log in to Book</a>`;
+                                }
+
                                 card.innerHTML = `
                                     <span class="class-tag">${cls.type}</span>
                                     <h3>${cls.name}</h3>
                                     <div class="class-detail">🕒 <strong>Time:</strong> ${cls.schedule_time}</div>
                                     <div class="class-detail">👥 <strong>Trainer:</strong> ${cls.trainer}</div>
                                     <div class="class-detail">👥 <strong>Capacity:</strong> ${cls.capacity} spots</div>
+                                    ${actionButton}
                                 `;
                                 scheduleContainer.appendChild(card);
                             });
@@ -192,10 +222,61 @@ session_start();
             fetchClasses('All');
 
             // Listen for changes
-            classFilter.addEventListener('change', function() {
+            classFilter.addEventListener('change', function () {
                 fetchClasses(this.value);
             });
+
+            // Booking function
+            window.bookClass = function (classId, btnElement) {
+                btnElement.textContent = 'Booking...';
+                btnElement.disabled = true;
+
+                const formData = new URLSearchParams();
+                formData.append('class_id', classId);
+
+                fetch('api/book_class.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            btnElement.textContent = 'Booked';
+                            btnElement.style.backgroundColor = 'var(--bg-subtle)';
+                            btnElement.style.color = 'var(--text-light)';
+                            btnElement.style.borderColor = 'var(--border-color)';
+                            showToast('Class booked successfully!', 'success');
+                        } else {
+                            btnElement.textContent = 'Book Class';
+                            btnElement.disabled = false;
+                            showToast(data.message || 'Error booking class', 'error');
+                        }
+                    })
+                    .catch(err => {
+                        btnElement.textContent = 'Book Class';
+                        btnElement.disabled = false;
+                        showToast('Network error while booking', 'error');
+                        console.error(err);
+                    });
+            };
+
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+    <script src="toast.js"></script>
+    <script src="logout.js"></script>
 </body>
+
 </html>
